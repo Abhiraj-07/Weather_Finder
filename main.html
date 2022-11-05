@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather API</title>
+
+    <style>
+        
+*{
+
+padding: 0%;
+margin: 0%;
+box-sizing: border-box;
+font-family: 'Dancing Script', cursive; 
+
+}
+body{
+
+display: flex;
+justify-content: center;
+align-items: center; 
+background-color: rgb(183 54 38);
+
+}
+
+#frame{
+border: 3px solid black;
+font-family: 'Dancing Script', cursive;
+text-align: center;
+margin: auto;
+margin-top: 15vh;
+padding-top: 18vh;
+width: 30vw;
+height: 70vh;
+
+background-color: tomato;
+
+border-radius:  3vh ;
+
+}
+#city{
+
+    font-size: 1.4rem;
+
+}
+.temperature ,#temp{
+    font-size: 1.1rem;
+}
+
+    </style>
+</head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">    
+
+    <div id="frame">
+
+        <div id="weather">
+            <i class="fas fa-sun" id="sun" style="color: orange;"></i> 
+<i class="fa-solid fa-cloud-showers-heavy" id="rainy" style="color: rgb(19, 19, 182)"></i>
+
+        </div>
+        <h2>
+
+            <i class="fa-solid fa-location-dot"></i>
+            <i id="city"> {%city%} , {%country%}</i>
+        </h2>
+        <p id="date">
+            
+        </p>
+
+        <h1 id="tem" class="temperature">
+        {%tempval%}   
+        </h1>
+        <span class="temperature" id="max">Max {%max_temp%} </span>|
+        <span class="temperature" id="min"> Min {%min_temp%} </span>
+
+    </div>
+<script >
+
+
+const curDate =document.getElementById('date');
+    const weather = document.getElementById('weather');
+    const tempStatus = "{%desc%}";
+   let changeStatus = ()=>{
+const sun = document.getElementById('sun')
+const rainy = document.getElementById('rainy')
+if(tempStatus == "Clear"){
+    rainy.style.display='none';
+}else{
+    sun.style.display='none';
+
+}
+
+   }  
+    let temperature=document.getElementById('temp');;
+
+    let min_temperature=document.getElementById('min');;
+    let max_temperature=document.getElementById('max');
+
+    const getCurrent  = ()=>{
+        let currentTime =new Date()
+    let day = currentTime.getDay();
+    let date = currentTime.getDate();
+    let month = currentTime.getMonth();
+let hours = currentTime.getHours();
+let min = currentTime.getMinutes();
+
+let sec = currentTime.getSeconds();
+
+let per=' AM ';
+console.log(hours);
+if(hours>12){
+    per = ' PM ';
+    hours=hours-12;
+}
+if(hours==12 && min==0 && sec==0 ){
+    per='noon';
+    hours=hours-12;
+
+}
+console.log(hours);
+ 
+
+let year = currentTime.getFullYear();
+    const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    day= (weekday[day]);
+    month= (months[month]);
+    curDate.innerHTML=` ${day}| ${date}|${month}|${year} |   ${hours}: ${min} : ${sec} ${per}`;
+}
+    getCurrent();
+
+
+</script>
+</body>
+
+</html>
