@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cli": "^1.0.1",
+    "github": "^14.0.0",
+    "github-cli": "^0.0.5",
     "request": "^2.88.2",
     "requests": "^0.3.0"
   }
